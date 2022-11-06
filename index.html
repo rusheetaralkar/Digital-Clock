@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body{
+            
+            background-color: gainsboro;
+            font-family: 'Courier New', Courier, monospaceS;
+           }
+        .container{
+            
+            border: 2px solid;
+            width: 50%;
+            text-align: center;
+            margin: 15px auto;
+        }
+    </style>
+    
+</head>
+<body onload="setInterval(displayDateAndTime,1000)">
+    <h1 style="text-align: center;">Digital Clock</h1>
+    <div class="container">
+        <h1>
+            <span id ="hours">00</span>:
+            <span id ="min">00</span>:
+            <span id ="sec">00</span>
+            <span id ="meridian">00</span>
+        </h1>
+    </div>
+    <div class ="container">
+        <h1>
+            <span id ="date">00</span>:
+            <span id ="month">00</span>:
+            <span id ="year">00</span>
+        </h1>
+        <h2 id ="day">some day</h2>
+    </div>]
+    <script>
+        function displayDateAndTime (){
+            let currDateObj= new Date();
+            let currHours=currDateObj.getHours();
+            let currMin=currDateObj.getMinutes();
+            let currSec=currDateObj.getSeconds();
+            let currMeridian =Myfunction(currHours, currMin);
+            let currYear=currDateObj.getFullYear();
+            let currMonth=currDateObj.getMonth()+1;
+            let currDate= currDateObj.getDate();
+            let currDay=currDateObj.getDay();
+
+            document.getElementById("hours").innerText=adam(currHours)
+            document.getElementById("min").innerText=currMin;
+            document.getElementById("sec").innerText=currSec;
+            document.getElementById("meridian").innerText=currMeridian;
+            document.getElementById("date").innerText=currDate;
+            document.getElementById("month").innerText=currMonth;
+            document.getElementById("year").innerText=currYear;
+            
+            switch(currDay)
+            {
+            case 0: currDay="SUNDAY"
+            break;
+            case 1: currDay="MONDAY"
+            break;
+            case 2: currDay="TUESDAY"
+            break;
+            case 3: currDay="WEDNESDAY"
+            break;
+            case 4: currDay="THURSDAY"
+            break;
+            case 5: currDay="FRIDAY"
+            break;
+            case 6: currDay="SATURDAY"
+            break;
+
+            }
+            document.getElementById("day").innerText=currDay;
+        }
+        function Myfunction(currHours, currMin ){
+            if(currHours >=12 && currMin >=0)
+            return 'PM';
+            else
+            return 'AM'
+        }
+        function adam(currHours){
+                if(currHours>12)
+                return currHours-12;
+                else
+                return currHours;
+            }
+    </script>
+</body>
+</html>
